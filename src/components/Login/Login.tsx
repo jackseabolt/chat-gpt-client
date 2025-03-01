@@ -91,7 +91,7 @@ export function Login() {
           onChange={handleSetValue}
           name="username"
           label="Username"
-          styles="pb-8"
+          styles="pb-6"
           error={errors.username}
         />
         <Input
@@ -104,7 +104,7 @@ export function Login() {
         />
         <Button label="Log In" type="submit" onClick={() => {}} />
         {errors.submission && (
-          <p className="text-red-500 text-center pt-3">{errors.submission}</p>
+          <p className="text-red-500 text-center pt-2">{errors.submission}</p>
         )}
       </form>
     </main>

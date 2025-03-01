@@ -19,10 +19,12 @@ export default function Input({
   styles,
 }: InputProps) {
   return (
-    <div className={twMerge(styles, "m-0")}>
-      <label className="pb-7 w-full m-0" htmlFor={name}>
-        {label}
-      </label>
+    <div className={twMerge(styles, "m-0 block")}>
+      {label && (
+        <label className="pb-2 w-full m-0 block" htmlFor={name}>
+          {label}
+        </label>
+      )}
       <input
         className="p-3 bg-slate-200 w-full m-0 rounded-sm"
         type={type ?? "text"}
@@ -30,7 +32,7 @@ export default function Input({
         name={name}
         onChange={onChange}
       />
-      {error && <p className="text-red-500 pt-3">{error}</p>}
+      {error && <p className="text-red-500 pt-2">{error}</p>}
     </div>
   );
 }
