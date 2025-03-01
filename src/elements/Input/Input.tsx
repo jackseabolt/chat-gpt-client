@@ -2,6 +2,7 @@ import React from "react";
 import { twMerge } from "tailwind-merge";
 
 type InputProps = {
+  value: string;
   onChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
   label: string;
   name: string;
@@ -11,6 +12,7 @@ type InputProps = {
 };
 
 export default function Input({
+  value,
   onChange,
   label,
   name,
@@ -31,6 +33,7 @@ export default function Input({
         id={name}
         name={name}
         onChange={onChange}
+        value={value}
       />
       {error && <p className="text-red-500 pt-2">{error}</p>}
     </div>

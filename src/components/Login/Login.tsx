@@ -88,6 +88,7 @@ export function Login() {
     <main className="bg-white flex items-center justify-center w-full">
       <form className="w-[90%] md:w-[300px]" onSubmit={handleSubmit}>
         <Input
+          value={values.username}
           onChange={handleSetValue}
           name="username"
           label="Username"
@@ -95,6 +96,7 @@ export function Login() {
           error={errors.username}
         />
         <Input
+          value={values.password}
           onChange={handleSetValue}
           name="password"
           label="Password"

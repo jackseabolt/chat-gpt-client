@@ -51,6 +51,7 @@ export default function Chat() {
       </div>
       <form className="py-5 px-7" onSubmit={handleSubmit}>
         <Input
+          value={query}
           onChange={handleSetQuery}
           label=""
           name="llm-input"
