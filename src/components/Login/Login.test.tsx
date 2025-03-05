@@ -1,22 +1,9 @@
 import { describe, it, expect } from "vitest";
 import { Login } from "./Login";
-import { render, screen } from "@testing-library/react";
+import { screen } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
-import { MemoryRouter, Route, Routes } from "react-router-dom";
+import { renderWithRouter } from "../../utils/testUtils";
 
-function renderWithRouter(
-  ui: React.ReactNode,
-  { route = "/", path = "/", ...renderOptions } = {}
-) {
-  return render(
-    <MemoryRouter initialEntries={[route]}>
-      <Routes>
-        <Route path={path} element={ui} />
-      </Routes>
-    </MemoryRouter>,
-    renderOptions
-  );
-}
 describe("Login", () => {
   it("displays form content", () => {
     renderWithRouter(<Login />, {});

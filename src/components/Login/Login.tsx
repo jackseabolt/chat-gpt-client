@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { capitalizeFirstLetter } from "../../utils/stringUtils";
+import { splitAndCapitalize } from "../../utils/stringUtils";
 import { login } from "../../api/authApi";
 import Button from "../../elements/Button/Button";
 import Input from "../../elements/Input/Input";
@@ -34,7 +34,7 @@ export function Login() {
     } else if (submitted) {
       setErrors((prevErrors) => ({
         ...prevErrors,
-        [e.target.name]: capitalizeFirstLetter(`${e.target.name} required`),
+        [e.target.name]: splitAndCapitalize(`${e.target.name} required`),
       }));
     }
 

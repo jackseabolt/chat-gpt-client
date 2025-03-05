@@ -1,10 +1,16 @@
 import Input from "../../elements/Input/Input";
+import MessageList from "../MessageList/MessageList";
 import { useState } from "react";
+
+type ChatBlock = {
+  type: "query" | "response";
+  text: string;
+};
 
 export default function Chat() {
   const [query, setQuery] = useState("");
   const [error, setError] = useState("");
-  const [response, setResponse] = useState("");
+  const [chatBlocks, setChatBlocks] = useState<ChatBlock[]>([]);
 
   const handleSetQuery = (e: React.ChangeEvent<HTMLInputElement>) => {
     setQuery(e.target.value);
@@ -24,6 +30,18 @@ export default function Chat() {
         body: JSON.stringify({ content: query }),
       });
 
+      setChatBlocks((prevVal) => [
+        ...prevVal,
+        {
+          type: "query",
+          text: query,
+        },
+        {
+          type: "response",
+          text: "",
+        },
+      ]);
+
       const reader = res.body?.getReader();
       const decoder = new TextDecoder();
 
@@ -33,7 +51,10 @@ export default function Chat() {
           if (done) break;
           let text = decoder.decode(value, { stream: true });
           text = text.replace(/"/gm, "");
-          setResponse((prev) => prev + text);
+          setChatBlocks((prev) => [
+            ...prev.slice(0, prev.length - 1),
+            { text: prev[prev.length - 1].text + text, type: "response" },
+          ]);
         }
       }
 
@@ -47,7 +68,7 @@ export default function Chat() {
   return (
     <main className="grid grid-rows-[1fr_auto]">
       <div className="bg-slate-50 py-5 px-7">
-        <p className="whitespace-pre-line">{response}</p>
+        <MessageList chatBlocks={chatBlocks} />
       </div>
       <form className="py-5 px-7" onSubmit={handleSubmit}>
         <Input
