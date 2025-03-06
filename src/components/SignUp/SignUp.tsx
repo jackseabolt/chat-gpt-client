@@ -3,7 +3,7 @@ import Input from "../../elements/Input/Input";
 import Button from "../../elements/Button/Button";
 import { splitAndCapitalize } from "../../utils/stringUtils";
 import { signUp } from "../../api/authApi";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, Link } from "react-router-dom";
 
 export default function SignUp() {
   const [submitted, setSubmitted] = useState(false);
@@ -135,6 +135,11 @@ export default function SignUp() {
         {errors.submission && (
           <p className="text-red-500 text-center pt-2">{errors.submission}</p>
         )}
+        <p className="text-center mt-7">
+          <Link className="underline" to="/login">
+            Sign in
+          </Link>
+        </p>
       </form>
     </main>
   );

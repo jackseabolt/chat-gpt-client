@@ -3,7 +3,7 @@ import { splitAndCapitalize } from "../../utils/stringUtils";
 import { login } from "../../api/authApi";
 import Button from "../../elements/Button/Button";
 import Input from "../../elements/Input/Input";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, Link } from "react-router-dom";
 
 /**
  * Login form shown on the home screen.
@@ -108,6 +108,11 @@ export function Login() {
         {errors.submission && (
           <p className="text-red-500 text-center pt-2">{errors.submission}</p>
         )}
+        <p className="text-center mt-7">
+          <Link className="underline" to="/signup">
+            Create an account
+          </Link>
+        </p>
       </form>
     </main>
   );

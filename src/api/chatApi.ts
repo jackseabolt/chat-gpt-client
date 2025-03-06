@@ -10,7 +10,13 @@ export type ChatRequest = {
  * Errors must be handled within the component.
  */
 export async function submitChat({ query }: ChatRequest): Promise<void> {
-  await axios.post("http://localhost:8080/chat", {
-    query,
-  });
+  await axios.post(
+    "http://localhost:8080/chat",
+    {
+      query,
+    },
+    {
+      withCredentials: true, // Ensures cookies are sent/received
+    }
+  );
 }

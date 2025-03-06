@@ -14,10 +14,16 @@ export async function login({
   username,
   password,
 }: LoginRequest): Promise<void> {
-  await axios.post("http://localhost:8080/auth/login", {
-    username,
-    password,
-  });
+  await axios.post(
+    "http://localhost:8080/auth/login",
+    {
+      username,
+      password,
+    },
+    {
+      withCredentials: true, // Ensures cookies are sent/received
+    }
+  );
 }
 
 export type SignUpRequest = {
