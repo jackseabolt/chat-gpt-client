@@ -23,12 +23,24 @@ jobs:
       - name: Build
         run: npm run build
 
+      - name: Upload build artifacts
+        uses: actions/upload-artifact@v3
+        with:
+          name: dist
+          path: dist
+
   deploy:
     needs: build
     runs-on: ubuntu-latest
     steps:
       - name: Checkout code
         uses: actions/checkout@v3
+
+      - name: Download build artifacts
+        uses: actions/download-artifact@v3
+        with:
+          name: dist
+          path: dist
 
       - name: Configure AWS credentials
         uses: aws-actions/configure-aws-credentials@v2
@@ -38,4 +50,4 @@ jobs:
           aws-region: us-west-1
 
       - name: Deploy to S3
-        run: aws s3 sync ./dist s3://seabolt-chat-gpt --delete
+        run: aws s3 sync dist s3://seabolt-chat-gpt --delete
