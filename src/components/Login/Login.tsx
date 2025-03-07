@@ -87,7 +87,6 @@ export function Login() {
   return (
     <main className="bg-white flex items-center justify-center w-full">
       <form className="w-[90%] md:w-[300px]" onSubmit={handleSubmit}>
-        <h1>Log In</h1>
         <Input
           value={values.username}
           onChange={handleSetValue}
