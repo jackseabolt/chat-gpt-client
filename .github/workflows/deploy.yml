@@ -67,5 +67,14 @@ jobs:
           aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
           aws-region: us-west-1
 
-      - name: Deploy to S3
-        run: aws s3 sync dist s3://seabolt-chat-gpt --delete
+      - name: Create temporary folder for deployment
+        run: |
+          mkdir -p /tmp/new-deployment
+          cp -r dist/* /tmp/new-deployment/
+
+      - name: Sync new files to S3 (without deleting old files yet)
+        run: aws s3 sync /tmp/new-deployment s3://seabolt-chat-gpt
+
+      - name: Replace old files with new ones (atomic operation)
+        run: |
+          aws s3 sync /tmp/new-deployment s3://seabolt-chat-gpt --delete
