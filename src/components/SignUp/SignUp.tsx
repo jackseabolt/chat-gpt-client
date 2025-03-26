@@ -96,8 +96,8 @@ export default function SignUp() {
   };
 
   return (
-    <main className="bg-white flex items-center justify-center w-full">
-      <form className="w-[90%] md:w-[300px]" onSubmit={handleSubmit}>
+    <main className="bg-white flex items-center justify-center w-full overflow-y-auto">
+      <form className="w-[90%] md:w-[300px] py-20" onSubmit={handleSubmit}>
         <Input
           value={values.firstName}
           onChange={handleSetValue}

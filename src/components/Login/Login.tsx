@@ -85,7 +85,7 @@ export function Login() {
   };
 
   return (
-    <main className="bg-white flex items-center justify-center w-full">
+    <main className="bg-white flex items-center justify-center w-full overflow-y-auto min-h-0 py-20">
       <form className="w-[90%] md:w-[300px]" onSubmit={handleSubmit}>
         <Input
           value={values.username}

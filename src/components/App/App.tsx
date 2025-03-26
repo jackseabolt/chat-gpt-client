@@ -8,11 +8,13 @@ import { Login } from "../Login/Login";
 import { Main } from "../Main/Main";
 import { Layout } from "../Layout/Layout";
 import SignUp from "../SignUp/SignUp";
+import Error from "../Error/Error";
 
 const router = createBrowserRouter([
   {
     path: "/",
     element: <Layout />,
+    errorElement: <Error />,
     children: [
       { index: true, element: <Navigate to="/home" replace /> },
       { path: "login", element: <Login /> },
