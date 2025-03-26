@@ -1,11 +1,7 @@
 import Input from "../../elements/Input/Input";
 import MessageList from "../MessageList/MessageList";
 import { useState } from "react";
-
-type ChatBlock = {
-  type: "query" | "response";
-  text: string;
-};
+import { ChatBlock } from "../../types/chat.types";
 
 export default function Chat() {
   const [query, setQuery] = useState("");
@@ -36,10 +32,12 @@ export default function Chat() {
         {
           type: "query",
           text: query,
+          createdAt: new Date().toLocaleTimeString(),
         },
         {
           type: "response",
           text: "",
+          createdAt: new Date().toLocaleTimeString(),
         },
       ]);
 
@@ -54,7 +52,11 @@ export default function Chat() {
           text = text.replace(/"/gm, "");
           setChatBlocks((prev) => [
             ...prev.slice(0, prev.length - 1),
-            { text: prev[prev.length - 1].text + text, type: "response" },
+            {
+              text: prev[prev.length - 1].text + text,
+              type: "response",
+              createdAt: new Date().toLocaleTimeString(),
+            },
           ]);
         }
       }
@@ -67,7 +69,7 @@ export default function Chat() {
   };
 
   return (
-    <main className="grid grid-rows-[1fr_auto]">
+    <main className="flex-1 grid grid-rows-[1fr_auto]">
       <div className="bg-slate-50 py-5 px-7">
         <MessageList chatBlocks={chatBlocks} />
       </div>
