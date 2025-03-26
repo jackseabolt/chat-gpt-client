@@ -19,11 +19,15 @@ export default function Chat() {
       setError("Please enter a question");
     }
 
+    const queryVal = query;
+
     try {
+      setQuery("");
+
       const res = await fetch("http://localhost:8080/chat", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ content: query }),
+        body: JSON.stringify({ content: queryVal }),
         credentials: "include",
       });
 
@@ -57,13 +61,14 @@ export default function Chat() {
             {
               text: prev[prev.length - 1].text + text,
               type: "response",
-              createdAt: new Date().toLocaleTimeString(),
+              createdAt: prev[prev.length - 1].createdAt,
             },
           ]);
         }
       }
     } catch (e) {
       console.error("Error", e);
+      setQuery(queryVal);
       setError("Something went wrong");
     }
   };

@@ -26,7 +26,7 @@ describe("Message", () => {
 
     render(<Message message={props} />);
     const wrapperEl = screen.getByRole("region", { name: "message" });
-    expect(wrapperEl).toHaveClass("ml-[45%]");
+    expect(wrapperEl).toHaveClass("ml-[15%]");
   });
 
   it("displays proper styles for response messages", () => {
@@ -38,6 +38,6 @@ describe("Message", () => {
 
     render(<Message message={props} />);
     const wrapperEl = screen.getByRole("region", { name: "message" });
-    expect(wrapperEl).toHaveClass("mr-[45%]");
+    expect(wrapperEl).toHaveClass("mr-[15%]");
   });
 });
