@@ -28,7 +28,7 @@ export default function Input({
         </label>
       )}
       <input
-        className="p-3 bg-slate-200 w-full m-0 rounded-sm"
+        className="p-3 bg-slate-100 w-full m-0 rounded-sm"
         type={type ?? "text"}
         id={name}
         name={name}

@@ -27,6 +27,8 @@ export default function Chat() {
         credentials: "include",
       });
 
+      setQuery("");
+
       setChatBlocks((prevVal) => [
         ...prevVal,
         {
@@ -60,8 +62,6 @@ export default function Chat() {
           ]);
         }
       }
-
-      setQuery("");
     } catch (e) {
       console.error("Error", e);
       setError("Something went wrong");
@@ -69,8 +69,8 @@ export default function Chat() {
   };
 
   return (
-    <main className="flex-1 grid grid-rows-[1fr_auto]">
-      <div className="bg-slate-50 py-5 px-7">
+    <main className="flex-1 flex flex-col">
+      <div className="bg-slate-50 py-5 px-7 flex-1 overflow-y-auto">
         <MessageList chatBlocks={chatBlocks} />
       </div>
       <form className="py-5 px-7" onSubmit={handleSubmit}>
